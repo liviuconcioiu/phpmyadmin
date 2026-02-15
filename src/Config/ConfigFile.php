@@ -764,6 +764,8 @@ class ConfigFile
                 'Export/sql_max_query_size' => 'validatePositiveNumber',
                 'FirstLevelNavigationItems' => 'validatePositiveNumber',
                 'ForeignKeyMaxLimit' => 'validatePositiveNumber',
+                'GisWidth' => 'validatePositiveNumber',
+                'GisHeight' => 'validatePositiveNumber',
                 'Import/csv_enclosed' => [['validateByRegex', '/^.?$/']],
                 'Import/csv_escaped' => [['validateByRegex', '/^.$/']],
                 'Import/csv_terminated' => [['validateByRegex', '/^.$/']],

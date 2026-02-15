@@ -68,6 +68,7 @@ class MainForm extends BaseForm
             ],
             'Tabs' => ['TabsMode', 'DefaultTabServer', 'DefaultTabDatabase', 'DefaultTabTable'],
             'DisplayRelationalSchema' => ['PDFDefaultPageSize'],
+            'Gis' => ['GisWidth', 'GisHeight'],
         ];
     }
 

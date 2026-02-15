@@ -26,7 +26,7 @@ final class MainFormTest extends AbstractTestCase
         self::assertSame('Main panel', MainForm::getName());
 
         $forms = $mainForm->getRegisteredForms();
-        self::assertCount(7, $forms);
+        self::assertCount(8, $forms);
 
         self::assertArrayHasKey('Startup', $forms);
         $form = $forms['Startup'];
@@ -149,6 +149,19 @@ final class MainFormTest extends AbstractTestCase
         self::assertSame(1, $form->index);
         self::assertSame([], $form->default);
         self::assertSame(['PDFDefaultPageSize' => 'PDFDefaultPageSize'], $form->fields);
+
+        self::assertArrayHasKey('Gis', $forms);
+        $form = $forms['Gis'];
+        self::assertSame('Gis', $form->name);
+        self::assertSame(1, $form->index);
+        self::assertSame([], $form->default);
+        self::assertSame(
+            [
+                'GisWidth' => 'GisWidth',
+                'GisHeight' => 'GisHeight',
+            ],
+            $form->fields,
+        );
     }
 
     public function testGetFields(): void
@@ -205,6 +218,8 @@ final class MainFormTest extends AbstractTestCase
                 'DefaultTabDatabase',
                 'DefaultTabTable',
                 'PDFDefaultPageSize',
+                'GisWidth',
+                'GisHeight',
             ],
             MainForm::getFields(),
         );

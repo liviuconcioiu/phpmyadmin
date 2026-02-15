@@ -86,8 +86,8 @@ class GisVisualizationControllerTest extends AbstractTestCase
             'spatial_candidates' => ['shape'],
             'spatialColumn' => 'shape',
             'labelColumn' => null,
-            'width' => 600,
-            'height' => 450,
+            'width' => $config->config->GisWidth,
+            'height' => $config->config->GisHeight,
             'start_and_number_of_rows_fieldset' => [
                 'pos' => 0,
                 'unlim_num_rows' => 0,

@@ -121,6 +121,8 @@ class SettingsTest extends TestCase
         'ForeignKeyDropdownOrder' => ['content-id', 'id-content'],
         'ForeignKeyMaxLimit' => 100,
         'DefaultForeignKeyChecks' => 'default',
+        'GisWidth' => 600,
+        'GisHeight' => 450,
         'ZipDump' => true,
         'GZipDump' => true,
         'BZipDump' => true,

@@ -150,6 +150,8 @@ use const VERSION_CHECK_DEFAULT;
  *     ForeignKeyDropdownOrder: array{0: 'content-id'|'id-content', 1?: 'content-id'|'id-content'},
  *     ForeignKeyMaxLimit: int<1, max>,
  *     DefaultForeignKeyChecks: 'default'|'disable'|'enable',
+ *     GisWidth: int<1, max>,
+ *     GisHeight: int<1, max>,
  *     ZipDump: bool,
  *     GZipDump: bool,
  *     BZipDump: bool,
@@ -1602,6 +1604,32 @@ final class Settings
     public string $DefaultForeignKeyChecks;
 
     /**
+     * Width for GIS Visualization
+     *
+     * ```php
+     * $cfg['GisWidth'] = 600;
+     * ```
+     *
+     * @link https://docs.phpmyadmin.net/en/latest/config.html#cfg_GisWidth
+     *
+     * @psalm-var positive-int
+     */
+    public int $GisWidth;
+
+    /**
+     * Height for GIS Visualization
+     *
+     * ```php
+     * $cfg['GisHeight'] = 450;
+     * ```
+     *
+     * @link https://docs.phpmyadmin.net/en/latest/config.html#cfg_GisHeight
+     *
+     * @psalm-var positive-int
+     */
+    public int $GisHeight;
+
+    /**
      * Allow for the use of zip compression (requires zip support to be enabled)
      *
      * ```php
@@ -2734,6 +2762,8 @@ final class Settings
         $this->InsertRows = $this->setInsertRows($settings);
         $this->ForeignKeyDropdownOrder = $this->setForeignKeyDropdownOrder($settings);
         $this->ForeignKeyMaxLimit = $this->setForeignKeyMaxLimit($settings);
+        $this->GisWidth = $this->setGisWidth($settings);
+        $this->GisHeight = $this->setGisHeight($settings);
         $this->DefaultForeignKeyChecks = $this->setDefaultForeignKeyChecks($settings);
         $this->ZipDump = $this->setZipDump($settings);
         $this->GZipDump = $this->setGZipDump($settings);
@@ -2933,6 +2963,8 @@ final class Settings
             'ForeignKeyDropdownOrder' => $this->ForeignKeyDropdownOrder,
             'ForeignKeyMaxLimit' => $this->ForeignKeyMaxLimit,
             'DefaultForeignKeyChecks' => $this->DefaultForeignKeyChecks,
+            'GisWidth' => $this->GisWidth,
+            'GisHeight' => $this->GisHeight,
             'ZipDump' => $this->ZipDump,
             'GZipDump' => $this->GZipDump,
             'BZipDump' => $this->BZipDump,
@@ -4419,6 +4451,38 @@ final class Settings
         }
 
         return $settings['DefaultForeignKeyChecks'];
+    }
+
+    /**
+     * @param array<int|string, mixed> $settings
+     *
+     * @psalm-return positive-int
+     */
+    private function setGisWidth(array $settings): int
+    {
+        if (! isset($settings['GisWidth'])) {
+            return 600;
+        }
+
+        $gisWidth = (int) $settings['GisWidth'];
+
+        return $gisWidth >= 1 ? $gisWidth : 600;
+    }
+
+    /**
+     * @param array<int|string, mixed> $settings
+     *
+     * @psalm-return positive-int
+     */
+    private function setGisHeight(array $settings): int
+    {
+        if (! isset($settings['GisHeight'])) {
+            return 450;
+        }
+
+        $gisHeight = (int) $settings['GisHeight'];
+
+        return $gisHeight >= 1 ? $gisHeight : 450;
     }
 
     /** @param array<int|string, mixed> $settings */

@@ -3858,6 +3858,27 @@ Console settings
 
     Console height
 
+GIS visualization settings
+--------------------------
+
+.. note::
+
+    These settings are mostly meant to be changed by user.
+
+.. config:option:: $cfg['GisWidth']
+
+    :type: integer
+    :default: 600
+
+    GIS visualization width
+
+.. config:option:: $cfg['GisHeight']
+
+    :type: integer
+    :default: 450
+
+    GIS visualization height
+
 Developer
 ---------
 

@@ -195,7 +195,11 @@ final readonly class GisVisualizationController implements InvocableController
         mixed $settingsIn,
     ): GisVisualizationSettings {
         if (! is_array($settingsIn)) {
-            return new GisVisualizationSettings(600, 450, $spatialCandidates[0]);
+            return new GisVisualizationSettings(
+                $this->config->config->GisWidth,
+                $this->config->config->GisHeight,
+                $spatialCandidates[0],
+            );
         }
 
         $labelColumn = '';
@@ -213,7 +217,12 @@ final readonly class GisVisualizationController implements InvocableController
             true,
         )];
 
-        return new GisVisualizationSettings(600, 450, $spatialColumn, $labelColumn);
+        return new GisVisualizationSettings(
+            $this->config->config->GisWidth,
+            $this->config->config->GisHeight,
+            $spatialColumn,
+            $labelColumn,
+        );
     }
 
     private function getPos(): int
