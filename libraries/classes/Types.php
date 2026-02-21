@@ -444,6 +444,9 @@ class Types
 
             case 'UUID':
                 return __('128-bit UUID (Universally Unique Identifier)');
+
+            case 'XMLTYPE':
+                return __('Intended for storage of XML data');
         }
 
         return '';
@@ -777,6 +780,7 @@ class Types
         $isJsonSupported = Compatibility::isJsonSupported($this->dbi);
         $isUUIDSupported = Compatibility::isUUIDSupported($this->dbi);
         $isVectorSupported = Compatibility::isVectorSupported($this->dbi);
+        $isXmlTypeSupported = Compatibility::isXmlTypeSupported($this->dbi);
 
         // most used types
         $ret = [
@@ -866,6 +870,10 @@ class Types
 
         if ($isVectorSupported) {
             $ret['VECTOR'] = ['VECTOR'];
+        }
+
+        if ($isXmlTypeSupported) {
+            $ret['XML'] = ['XMLTYPE'];
         }
 
         return $ret;
